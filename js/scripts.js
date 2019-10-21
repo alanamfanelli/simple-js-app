@@ -1,5 +1,3 @@
-<script>
-  alert('Hello world');
-</script>
-var favoriteFood=sushi
-document.write(favoriteFood)
+alert('Hello world');
+var favoriteFood = 'sushi';
+document.write(favoriteFood);
