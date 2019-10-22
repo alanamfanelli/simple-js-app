@@ -23,12 +23,11 @@ var repository = [ /* Pokedex Object Array*/
       height:2,
       type:['grass','poison']
   }
-];
+]
 for (items in repository) {
-  document.write(repository[items].name + ' (height: ' + repository[items].height + 'm)<br>');
-}
 if (repository[items].height > 1.1) {
     document.write(repository[items].name + " (height: " + repository[items].height + "m) - Wow, that's big!<br><br>");
   } else {
     document.write(repository[items].name + ' (height: ' + repository[items].height + 'm)<br><br>');
   }
+}
