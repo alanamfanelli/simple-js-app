@@ -1,3 +1,5 @@
+(function (){pokemonRepository = (function ()
+    {
 var repository = [ /* Pokedex Object Array*/
   {
       name:'Squirtle',
@@ -24,10 +26,34 @@ var repository = [ /* Pokedex Object Array*/
       type:['grass','poison']
   }
 ]
-repository.forEach(function(pokedexList) {
-  if (pokedexList.height > 1.1) {
-    document.write(pokedexList.name + ' (Height: '+pokedexList.height+') - Wow that\'s big <br>' )
-  } else {
-    document.write(pokedexList.name + ' (Height: '+pokedexList.height+') <br> ' )
-  }
-});
+function add(pokemon) {
+      repository.push(pokemon);
+    }
+
+    function getAll() {
+      return repository;
+    }
+
+    return {
+      add: add,
+      getAll: getAll
+    }
+    })();
+    var pokemon = { name: "Charmeleon",
+    height: 1.1,
+    types: [ "Fire" ]};
+var getAll= pokemonRepository.getAll();
+
+    pokemonRepository.add(pokemon)
+
+    getAll.forEach(function(property){
+      if (property.height >= 2.0) {
+                document.write("<p>" +property.name+" "+property.height+ " Wow! That's Big!" +"</p>");
+            }
+          else {
+            document.write("<p>" +property.name+" "+property.height+ "</p>");
+                }
+                 });
+
+    pokemonRepository();
+    })();
