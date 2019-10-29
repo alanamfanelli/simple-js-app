@@ -1,0 +1,45 @@
+html, body{
+  margin: 0;
+  padding: 15px;
+  width: 100%;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  text-align: center;
+  position: absolute;
+  width: 95%;
+  margin: 10px auto 0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  background: none;
+  color: #ccc;
+  margin-bottom: 5px;
+  width: 240px;
+  height: 50px;
+  border: 2px solid;
+  font-size: 15px;
+  border-radius: 4px;
+}
+
+button:hover, button:focus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.wrapper {
+  width: 100%;
+}

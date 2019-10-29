@@ -1,6 +1,7 @@
-(function (){pokemonRepository = (function ()
-    {
-var repository = [ /* Pokedex Object Array*/
+var $pokemonList = document.querySelector('ul');
+
+var pokemonRepository = (function(){
+  var repository =[ /* Pokedex Object Array*/
   {
       name:'Squirtle',
       height:0.5,
@@ -25,39 +26,44 @@ var repository = [ /* Pokedex Object Array*/
       height:2,
       type:['grass','poison']
   }
-]
-function add(pokemon) {
-      repository.push(pokemon);
-    }
-
-    function getAll() {
-      return repository;
-    }
-
-    return {
-      add: add,
-      getAll: getAll
-    }
-    })();
-  var pokemon =
-   {
-    name: "Charmeleon",
-    height: 1.1,
-    types: [ "Fire" ]
-    };
-var getAll= pokemonRepository.getAll();
-
-    pokemonRepository.add(pokemon)
-
-    getAll.forEach(function(property)
+];
+//Function to add new Pokemon data
+function add(pokemon)
+{
+  //Must be an 'object' type
+  if (typeof pokemon !== 'object')
     {
-      if (property.height >= 2.0) {
-            document.write("<p>" +property.name+" "+property.height+ " Wow! That's Big!" +"</p>");
-            }
-      else {
-            document.write("<p>" +property.name+" "+property.height+ "</p>");
-            }
-    });
+    return 'Not a valid input'
+    }
+    else
+    {
+    repository.push(pokemon);
+    }
+}
 
-    pokemonRepository();
-    })();
+function getAll()
+  {
+    return repository;
+  }
+
+function addListItem(pokemon)
+  {
+    var listItem = document.createElement('li');
+    var button = document.createElement('button');
+    $pokemonList.appendChild(listItem);
+    button.innerText = pokemon.name;
+    button.classList.add('new-style')
+    listItem.appendChild(button);
+  }
+return
+  {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem
+  };
+})();
+
+//Creates list of Pokemon with Pokemon's name on the button
+pokemonRepository.getAll().forEach(function(currentItem){
+  pokemonRepository.addListItem(currentItem);
+})
