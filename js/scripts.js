@@ -39,21 +39,25 @@ function add(pokemon) {
       getAll: getAll
     }
     })();
-    var pokemon = { name: "Charmeleon",
+  var pokemon =
+   {
+    name: "Charmeleon",
     height: 1.1,
-    types: [ "Fire" ]};
+    types: [ "Fire" ]
+    };
 var getAll= pokemonRepository.getAll();
 
     pokemonRepository.add(pokemon)
 
-    getAll.forEach(function(property){
+    getAll.forEach(function(property)
+    {
       if (property.height >= 2.0) {
-                document.write("<p>" +property.name+" "+property.height+ " Wow! That's Big!" +"</p>");
+            document.write("<p>" +property.name+" "+property.height+ " Wow! That's Big!" +"</p>");
             }
-          else {
+      else {
             document.write("<p>" +property.name+" "+property.height+ "</p>");
-                }
-                 });
+            }
+    });
 
     pokemonRepository();
     })();
