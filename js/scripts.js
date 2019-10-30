@@ -2,41 +2,40 @@ var $pokemonList = document.querySelector('ul');
 
 var pokemonRepository = (function(){
   var repository =[ /* Pokedex Object Array*/
-  {
-      name:'Squirtle',
-      height:0.5,
-      type:['water']
-  },
-  {
-      name:'Butterfree',
-      height:1.1,
-      type:['bug','flying']
-  },
-  {
-      name:'Pikachu',
-      height:1.04,
-      type:['electric']
-  },
-  {
-      name:'Ninetales',
-      height:1.1,
-      type:['fire']
-  },
-  {   name:'Venusaur',
-      height:2,
-      type:['grass','poison']
-  }
+      {
+        name:'Squirtle',
+        height:0.5,
+        type:['water']
+      },
+      {
+        name:'Butterfree',
+        height:1.1,
+        type:['bug','flying']
+      },
+      {
+        name:'Pikachu',
+        height:1.04,
+        type:['electric']
+      },
+      {
+        name:'Ninetales',
+        height:1.1,
+        type:['fire']
+      },
+      {
+        name:'Venusaur',
+        height:2,
+        type:['grass','poison']
+      }
 ];
 //Function to add new Pokemon data
 function add(pokemon)
 {
   //Must be an 'object' type
-  if (typeof pokemon !== 'object')
-    {
-    return 'Not a valid input'
+  if (typeof pokemon !== 'object'){
+    return 'Not a valid input';
     }
-    else
-    {
+    else{
     repository.push(pokemon);
     }
 }
@@ -52,18 +51,29 @@ function addListItem(pokemon)
     var button = document.createElement('button');
     $pokemonList.appendChild(listItem);
     button.innerText = pokemon.name;
-    button.classList.add('new-style')
+    button.classList.add('new-style');
     listItem.appendChild(button);
+    $pokemonList.appendChild(listItem)
+    button.addEventListener('click', function (){
+      showDetails(pokemon)
+    })
   }
+
+  function showDetails(pokemon){
+    console.log(pokemon)
+  }
+
 return
   {
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    showDetails: showDetails
   };
 })();
 
 //Creates list of Pokemon with Pokemon's name on the button
-pokemonRepository.getAll().forEach(function(currentItem){
+pokemonRepository.getAll().forEach(function(currentItem)
+{
   pokemonRepository.addListItem(currentItem);
 })
