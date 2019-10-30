@@ -53,7 +53,7 @@ function addListItem(pokemon)
     button.innerText = pokemon.name;
     button.classList.add('new-style');
     listItem.appendChild(button);
-    $pokemonList.appendChild(listItem)
+    $pokemonList.appendChild(listItem);
     button.addEventListener('click', function (){
       showDetails(pokemon)
     })
