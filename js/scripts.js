@@ -64,66 +64,52 @@ function addListItem(pokemon){
     });
   }
 
-  //Funtion to show modal for Pokemon data
-   function createReusableModal() {
+  //Funtion to create modal
+  var $modalContainer = document.querySelector('#modal-container');
+  function showModal(title, text, image) {
 
-     var modal = document.createElement('div');
-     modal.classList.add('modal');
+   $modalContainer.classList.add('is-visible');
 
-     var closeButtonElement = document.createElement('button');
-     closeButtonElement.classList.add('modal-close');
-     closeButtonElement.innerText = 'Close';
-     //closeButtonElement.addEventListener('click', hideModal)
+   // Clear all existing modal content
+   $modalContainer.innerHTML = '';
 
-     var nameElement = document.createElement('h1');
-     nameElement.innerText = ('title');
+   var modal = document.createElement('div');
+   modal.classList.add('modal');
 
-     modal.appendChild(closeButtonElement);
-     modal.appendChild(nameElement);
-     $modalContainer.appendChild(modal);
-   }
+   // Add the new modal content: Name, height, and image
+   var closeButtonElement = document.createElement('button');
+   closeButtonElement.classList.add('modal-close');
+   closeButtonElement.innerText = 'Close';
+   closeButtonElement.addEventListener('click', hideModal);
 
-   //Function to show modal for Pokemon data
-     function showModal(item) {
-       console.log('TCL: showModal -> item', item.name);
-       var titleElement = document.querySelector('.title');
-       titleElement.innerText = item.name;
-       $modalContainer.classList.add('is=visible');
-     }
+   var titleElement = document.createElement('h1');
+   titleElement.innerText = title;
 
-   //Function to hide modal
-   function hideModal() {
-     var $modalContainer = document.querySelector('#modal-container');
-     $modalContainer.classList.remove('is-visible');
-   }
+   var contentElement = document.createElement('p');
+   contentElement.innerText = 'height: ' + text;
 
-   //Function to show details of each Pokemon
-   function showDetails(item) {
-     pokemonRepository.loadDetails(item).then(function() {
-      console.log(item);
-      return item;
-    }).then(function(item) {
-      console.log('TCL: showDetails -> item', item);
-      showModal(item);
+   var imageElement = document.createElement('img');
+   imageElement.src = image;
+   imageElement.classList.add('myImage');
+
+   modal.appendChild(closeButtonElement);
+   modal.appendChild(titleElement);
+   modal.appendChild(contentElement);
+   modal.appendChild(imageElement);
+   $modalContainer.appendChild(modal);
+
+   $modalContainer.classList.add('is-visible');
+ }
+
+  function hideModal() {
+    $modalContainer.classList.remove('is-visible');
+    }
+
+  function showDetails(item) {
+    pokemonRepository.loadDetails(item).then(function () {
+      showModal(item.name, item.height, item.imgUrl);
     });
   }
-
-   window.addEventListener('keydown', function(e) {
-     if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
-       hideModal();
-     }
-   });
-
-   $modalContainer.addEventListener('click', (e) => {
-     // Since this is also triggered when clicking INSIDE the modal
-     // We only want to close if the user clicks directly on the overlay
-     var target = e.target;
-     console.log('TCL: pokemonRepository -> target', target);
-     var $modalClose = document.querySelector('.modal-close');
-     if (target === $modalContainer || $modalClose) {
-       hideModal();
-     }
-   })
 
 return{
     add: add,
@@ -132,7 +118,6 @@ return{
     showDetails: showDetails,
     loadList: loadList,
     loadDetails: loadDetails,
-    createReusableModal: createReusableModal,
     showModal: showModal,
     hideModal: hideModal,
   };
@@ -140,8 +125,6 @@ return{
 
 //Creates list of Pokemon with Pokemon's name on the button
 pokemonRepository.loadList().then(function() {
-  //Create a reusable modal once
-  pokemonRepository.createReusableModal();
   pokemonRepository.getAll().forEach(function(pokemon){
     pokemonRepository.addListItem(pokemon);
   });
