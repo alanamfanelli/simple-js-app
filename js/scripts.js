@@ -86,7 +86,7 @@ function addListItem(pokemon){
    titleElement.innerText = title;
 
    var contentElement = document.createElement('p');
-   contentElement.innerText = 'height: ' + text;
+   contentElement.innerText = 'Height: ' + text;
 
    var imageElement = document.createElement('img');
    imageElement.src = image;
