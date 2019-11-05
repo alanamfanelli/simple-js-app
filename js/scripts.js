@@ -107,7 +107,7 @@ function addListItem(pokemon){
 
   function showDetails(item) {
     pokemonRepository.loadDetails(item).then(function () {
-      showModal(item.name, item.height, item.imgUrl);
+      showModal(item.name, item.height, item.imageUrl);
     });
   }
 
